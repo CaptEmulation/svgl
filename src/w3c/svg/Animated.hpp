@@ -4,7 +4,7 @@
 Copyright (c) 2001 Stephane Conversy, Jean-Daniel Fekete and Ecole des
 Mines de Nantes.
 All rights reserved.
- 
+
 This software is proprietary information of Stephane Conversy,
 Jean-Daniel Fekete and Ecole des Mines de Nantes.  You shall use it
 only in accordance with the terms of the license agreement you
@@ -16,6 +16,7 @@ http://www.emn.fr/info/image/Themes/Indigo/licence.html
 #ifndef __svg_Animated__
 #define __svg_Animated__
 
+#include <ostream>
 #include <w3c/svg/Attribute.hpp>
 
 namespace svg {
@@ -25,13 +26,14 @@ namespace svg {
   public:
     Attribute<X>& getBaseVal() { return baseVal; };
     Attribute<X>& getAnimatedVal() { return animatedVal; }
-    
+
     const Attribute<X>& getBaseVal() const { return baseVal; };
     const Attribute<X>& getAnimatedVal() const { return animatedVal; }
 
   public:
     operator X() { return getBaseVal(); }
-
+    template <class Y> friend std::ostream& operator << (std::ostream& out, const svg::Attribute<Y>& a);
+    template <class Y> friend std::ostream& operator << (std::ostream& out, const svg::Animated<Y>& a);
   private:
     Attribute<X> baseVal;
     Attribute<X> animatedVal;

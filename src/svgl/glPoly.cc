@@ -9,7 +9,11 @@
 #include <glPoly.h>
 
 #include <iostream>
-#include <malloc.h>
+#include <stdlib.h>
+
+#ifndef GLAPIENTRYP
+#define GLAPIENTRYP *
+#endif
 
 #if 0
 void
@@ -64,7 +68,7 @@ void  endCallback(glPoly * gglPoly)
   //glEnd();
 }
 
-static void 
+static void
 tessError(GLenum err)
 {
   std::cerr << gluErrorString(err) << std::endl;
@@ -134,7 +138,7 @@ draw(const glPoly& poly)
   //glPoly::point_list_type::size_type beg, end;
   //beg=0;
   for(glPoly::contour_type::size_type i=0; i<poly.contours.size(); ++i) {
-    //std::cerr << "i " << i << std::endl; 
+    //std::cerr << "i " << i << std::endl;
     const glPoly::primitive_info& info = poly.contours[i];
     //end = beg+info.len;
 #if 0

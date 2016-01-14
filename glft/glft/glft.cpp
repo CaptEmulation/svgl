@@ -4,7 +4,7 @@
 Copyright (c) 2001 Stephane Conversy, Jean-Daniel Fekete and Ecole des
 Mines de Nantes.
 All rights reserved.
- 
+
 This software is proprietary information of Stephane Conversy,
 Jean-Daniel Fekete and Ecole des Mines de Nantes.  You shall use it
 only in accordance with the terms of the license agreement you
@@ -25,18 +25,18 @@ http://www.emn.fr/info/image/Themes/Indigo/licence.html
 #include FT_GLYPH_H
 #include FT_IMAGE_H
 
-#undef __FTERRORS_H__                                                 
-#define FT_ERRORDEF( e, v, s )  { e, s },                         
-#define FT_ERROR_START_LIST  {                                    
-#define FT_ERROR_END_LIST    { 0, 0 } };                          
-  
-const struct                                                      
-{                                                                 
-  int          err_code;                                          
-  const char*  err_msg;
-} ft_errors[] =                                                   
+#undef __FTERRORS_H__
+#define FT_ERRORDEF( e, v, s )  { e, s },
+#define FT_ERROR_START_LIST  {
+#define FT_ERROR_END_LIST    { 0, 0 } };
 
-#include <freetype/fterrors.h>                                    
+const struct
+{
+  int          err_code;
+  const char*  err_msg;
+} ft_errors[] =
+
+#include <freetype2/fterrors.h>
 
 #include <GL/glu.h>
 
@@ -105,7 +105,7 @@ struct glft_glyph_info {
 ------------------------------
 gl stuff
 ------------------------------
-*/ 
+*/
 
 /* CALLBACK is for windoze users... not SGI ones!
  Thanks to G. Lanois (gerard@msi.com)
@@ -114,7 +114,7 @@ gl stuff
 #define CALLBACK
 #endif
 
-#define CALLBACKARG 
+#define CALLBACKARG
 
 #define DBG_CALLBACK 0
 
@@ -218,7 +218,7 @@ glft_set_gl_context()
                    (glu_callback)errorCallback);
   gluTessCallback(thetess, GLU_TESS_COMBINE,
 		  (glu_callback)combineCallback);
-                   
+
   gluTessProperty(thetess, GLU_TESS_WINDING_RULE,  GLU_TESS_WINDING_NONZERO);
   gluTessNormal(thetess, 0, 0, 1);
 
@@ -245,18 +245,18 @@ glft_init(void)
     "abcdefghijklmnopqrstuvwxyz"
     "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
     "0123456789"
-    "\"&<>?,;.:/\\~#'{}[]()-_¨^+%*£$!@ ="
-    "¡¢£¤¥¦§¨©ª«¬­®¯°±²³´µ¶·¸¹º»¼½¾¿"
-    "ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜÝÞß"
-    "àáâãäåæçèéêëìíîïðñòóôõö÷øùúûüýþÿ"
+    "\"&<>?,;.:/\\~#'{}[]()-_ï¿½^+%*ï¿½$!@ ="
+    "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½"
+    "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½"
+    "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½"
     ;
 
   glft_english_printable =
     "abcdefghijklmnopqrstuvwxyz"
     "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
     "0123456789"
-    "\"&<>?,;.:/\\~#'{}[]()-_¨^+%*£$!@ ="
-    "¡¢£¤¥¦§¨©ª«¬­®¯°±²³´µ¶·¸¹º»¼½¾¿"
+    "\"&<>?,;.:/\\~#'{}[]()-_ï¿½^+%*ï¿½$!@ ="
+    "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½"
     ;
 
   thetess = gluNewTess();
@@ -320,9 +320,9 @@ glft_font_new(const char* file)
     fprintf(stderr, "%s\n", ft_errors[error].err_msg);
     return 0;
   }
-  
-  error = FT_Select_Charmap(thefont->_FT_face, ft_encoding_unicode );                              
-  error = FT_Set_Char_Size( thefont->_FT_face, 0, 12*64, dpi, dpi );  
+
+  error = FT_Select_Charmap(thefont->_FT_face, ft_encoding_unicode );
+  error = FT_Set_Char_Size( thefont->_FT_face, 0, 12*64, dpi, dpi );
 
   thefont->ascent = ((thefont->_FT_face))->ascender;
   thefont->descent = ((thefont->_FT_face))->descender;
@@ -335,7 +335,7 @@ glft_font_new(const char* file)
 void
 glft_font_delete(struct glft_font* thefont)
 {
-        
+
   FT_Done_Face(thefont->_FT_face);
   free(thefont);
 }
@@ -405,12 +405,12 @@ glft_font_get_glyph_metrics(struct glft_font* thefont, unsigned char thechar, in
 {
   struct glft_glyph_info info;
   int err;
-  
+
   err = glft_get_glyph_info(thefont, thechar, size, &info);
   if (err) {
     return err;
   }
-  
+
   *xadvance = info.xadvance;
   return 0;
 }
@@ -520,7 +520,7 @@ subdivide(struct point2i* base)
   a = base[3].x = ( base[2].x + b ) / 2;
   b = base[1].x = ( base[0].x + b ) / 2;
   base[2].x = ( a + b ) / 2;
-  
+
   base[4].y = base[2].y;
   b = base[1].y;
   a = base[3].y = ( base[2].y + b ) / 2;
@@ -530,7 +530,7 @@ subdivide(struct point2i* base)
   return 0;
 }
 
-/* 
+/*
 ((initpointnum*2-1)*2-1)*2-1...  -1
 remove 1 at the end since we don't emit the first point of the bezier curve (point emitted whith last primitive)
 initpoint=3
@@ -600,7 +600,7 @@ subdivide_bezier(const struct bezier3i *b, struct point2i *ptab, int n)
       points_stack_top+=2;
       ++numdiv;
     }
-    
+
     /* emit */
 
     ptab[pcount--] = points_stack[points_stack_top+2];
@@ -763,7 +763,7 @@ new_read_points(FT_Vector *points, char* flags, int first, int last, int * num_p
         thebezier.p1 = p;
         thebezier.p2.x = points[i].x;
         thebezier.p2.y = points[i].y;
-        
+
         p = thebezier.p2;
         current = readingbezier;
         break;
@@ -813,7 +813,7 @@ new_read_points(FT_Vector *points, char* flags, int first, int last, int * num_p
 
         thebezier.p1= thebezier.p3;
         thebezier.p2 = p;
-        
+
         break;
       }
       break;
@@ -879,18 +879,18 @@ glft_new_glyph(struct glft_font* thefont, char _thechar, int size)
     theglyph.contours = (struct glft_contour*) malloc( sizeof(struct glft_contour) * theglyph.num_contours);
 
 		double x1=0,y1=0,x2=0,y2=0;
-		
+
     for(i=0; i<_FT_outline.n_contours; ++i) {
 			int j;
 			int num_point;
-			
+
 #if DBG_POINT
 			fprintf(stderr, "char:%c contour:%d %s:%d\n",_thechar,i,__FILE__,__LINE__);
 #endif
 			int err = new_read_points(_FT_outline.points,_FT_outline.tags, first_point,_FT_outline.contours[i], &num_point );
 			assert(err==0);
 			/*fprintf(stderr, "%d\n", num_point);*/
-			
+
 			theglyph.contours[i].num_points = num_point;
 			theglyph.contours[i].points = (struct point*) malloc (sizeof (struct point) * theglyph.contours[i].num_points);
 			for(j=0; j<num_point; ++j) {
@@ -901,7 +901,7 @@ glft_new_glyph(struct glft_font* thefont, char _thechar, int size)
 				if(theglyph.contours[i].points[j].x>x2) x2=theglyph.contours[i].points[j].x;
 				if(theglyph.contours[i].points[j].y>y2) y2=theglyph.contours[i].points[j].y;
 			}
-#if 0			
+#if 0
 			if(_thechar=='p') {
 				fprintf(stderr, "'%c' %d %f %f %f %f\n", _thechar, size, x1,y1,x2,y2);
 			}
@@ -909,7 +909,7 @@ glft_new_glyph(struct glft_font* thefont, char _thechar, int size)
 			first_point = _FT_outline.contours[i]+1;
     }
   }
-	
+
   *rglyph = theglyph;
   return rglyph;
 }
@@ -962,7 +962,7 @@ glft_glyph_render_plain(struct glft_glyph* theglyph)
 #if GLFT_USE_GLLIST
   glEndList();
   glCallList(theglyph->gllist);
-  
+
   }
 #endif
 }
@@ -1011,19 +1011,19 @@ test_load_save(const struct glft_vector_font* font1)
 
       if(font1->glyph_infos[i]->glyph->num_contours != font2->glyph_infos[i]->glyph->num_contours) {
 	fprintf(stderr, "glyph %d num_contours differ: %d vs %d %s:%d\n", i, font1->glyph_infos[i]->glyph->num_contours, font2->glyph_infos[i]->glyph->num_contours, __FILE__,__LINE__);
-	return 0;	
+	return 0;
       }
 
       for(j=0; j<font1->glyph_infos[i]->glyph->num_contours; ++j) {
 
 	if(font1->glyph_infos[i]->glyph->contours[j].num_points != font2->glyph_infos[i]->glyph->contours[j].num_points) {
 	  fprintf(stderr, "glyph %d num_points differ in contour %d: %d vs %d %s:%d\n", i, j, font1->glyph_infos[i]->glyph->contours[j].num_points, font2->glyph_infos[i]->glyph->contours[j].num_points, __FILE__,__LINE__);
-	  return 0;	
+	  return 0;
 	}
 
 	if(strncmp((const char*)font1->glyph_infos[i]->glyph->contours[j].points, (const char*)font2->glyph_infos[i]->glyph->contours[j].points, font1->glyph_infos[i]->glyph->contours[j].num_points*sizeof(point))) {
 	  fprintf(stderr, "glyph %d points differ in contour %d %s:%d\n", i, j, __FILE__,__LINE__);
-	  return 0;	
+	  return 0;
 	}
       }
     }
@@ -1038,7 +1038,7 @@ glft_glyph_save(const struct glft_glyph* glyph, FILE* file)
 {
   typedef int vector_glyph_coord_t;
   int i;
-  
+
   vector_glyph_coord_t one=1;
   fwrite((void*)&one, sizeof(vector_glyph_coord_t),1,file);
   fwrite((void*)&glyph->num_contours, sizeof(int), 6, file);
@@ -1105,7 +1105,7 @@ glft_new_vector_font(struct glft_font* thefont, const char* charset, int thesize
   const char *charset_iterator=charset;
   char done[256];
   int i;
-  
+
   res = (struct glft_vector_font*)malloc(sizeof(struct glft_vector_font));
 
   for(i=0;i<256;++i) {
@@ -1171,7 +1171,7 @@ glft_vector_font_render_outline(const struct glft_vector_font* font, const char*
       const struct glft_glyph* glyph = font->glyph_infos[thechar]->glyph;
       glft_glyph_render_outline(glyph);
       glTranslated(glyph->xadvance, 0, 0);
-    }    
+    }
     ++str;
   }
 }
@@ -1194,7 +1194,7 @@ glft_vector_font_render_plain(const struct glft_vector_font* font, const char* s
       dbgCoordTooLarge_char = *str;
       glft_glyph_render_plain(glyph);
       glTranslated(glyph->xadvance, 0, 0);
-    }    
+    }
     ++str;
   }
 }
@@ -1208,7 +1208,7 @@ glft_vector_font_get_xadvance(struct glft_vector_font* font, const char* str)
     if(font->glyph_infos[thechar]) {
       const struct glft_glyph* glyph = font->glyph_infos[thechar]->glyph;
       xadvance+=glyph->xadvance;
-    }    
+    }
     ++str;
   }
   return xadvance;
@@ -1223,7 +1223,7 @@ glft_vector_font_get_xadvance_char(struct glft_vector_font* font, char c)
   if(font->glyph_infos[thechar]) {
     const struct glft_glyph* glyph = font->glyph_infos[thechar]->glyph;
     xadvance=glyph->xadvance;
-  }    
+  }
   return xadvance;
 }
 #endif
@@ -1429,7 +1429,7 @@ glft_pixmap_glyph_get_pixmap(const struct glft_pixmap_glyph * g) {
 
 void
 glft_pixmap_glyph_render(struct glft_pixmap_glyph* theglyph)
-{ 
+{
   glRasterPos2i(theglyph->xmin, theglyph->ymin);
   glDrawPixels(theglyph->xmax-theglyph->xmin, theglyph->ymax-theglyph->ymin, GL_LUMINANCE_ALPHA, GL_UNSIGNED_BYTE, theglyph->_pixmap);
 }
@@ -1568,7 +1568,7 @@ glft_new_pixmap_font_maxsize(struct glft_font* thefont, const char* charset, int
       infos[thechar].bearing_x = theinfo.bearing_x;
       infos[thechar].bearing_y = theinfo.bearing_y;
       infos[thechar].xmax = theinfo.xmax;
-      
+
       if(width + w + wgap > max_size) {
 	   /*	fprintf(stderr, "%s:%d\n", __FILE__, __LINE__);*/
 	   width = 0;
@@ -1588,7 +1588,7 @@ glft_new_pixmap_font_maxsize(struct glft_font* thefont, const char* charset, int
       }
       width += w + wgap;
       infos[thechar].x2=infos[thechar].x1+w;
-      infos[thechar].y2=infos[thechar].y1+h;      
+      infos[thechar].y2=infos[thechar].y1+h;
 
       done[thechar] = 1;
     }
@@ -1688,7 +1688,7 @@ glft_pixmap_font_new()
   res->pixmap = 0;
   for(i=0;i<256;++i)
     res->glyph_infos[i]=0;
-  res->width = res->height = 0 ; 
+  res->width = res->height = 0 ;
   return res;
 }
 
@@ -1716,7 +1716,7 @@ glft_pixmap_font_enable_texture(const struct glft_pixmap_font* thetex)
 			glft_pixmap_font_get_pixmap(thetex));
 
   glPixelStorei(GL_UNPACK_ALIGNMENT, 8);
-  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST); 
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
   glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
 #ifndef PRECOMPUTED_TEXCOORD
@@ -1755,7 +1755,7 @@ glft_pixmap_font_render(struct glft_pixmap_font* thetex, const char* thestring)
       continue;
     }
     x = xadvance + info->bearing_x;
-    /*        
+    /*
 		fprintf(stderr, "%c %p %d %d %d %d - %d\n", *thestring, info,
 		info->x1,info->y1, info->x2,info->y2,
 		info->bearing_y);
@@ -1812,7 +1812,7 @@ glft_pixmap_font_render_with_other_advance(struct glft_pixmap_font* thetex, stru
     }
 
     x = (int)rint(xadvanceacc+info->bearing_x);
-    /*    
+    /*
 		fprintf(stderr, "%c %p %d %d %d %d - %d\n", *thestring, info,
 		info->x1,info->y1, info->x2,info->y2,
 		info->bearing_y);
@@ -1924,7 +1924,7 @@ glft_pixmap_font_bounding_box(struct glft_pixmap_font* thetex, const char* thest
 		*x2=xadvanceacc-info->xadvance+info->xmax;
 		/*fprintf(stderr, "%c %d %d\n", thechar, info->xadvance, info->xmax);*/
 	}
-	
+
 }
 
 void
@@ -1981,7 +1981,7 @@ glft_pixmap_font_bounding_box_with_other_advance(struct glft_pixmap_font* thetex
 	if(info) {
 		*x2=(int)rint(xadvanceacc-xadvance+info->xmax);
 		/* *x2 = (int)rint(xadvanceacc); */
-	} else	
+	} else
 		*x2 = (int)rint(xadvanceacc);
 
 }
@@ -2006,7 +2006,7 @@ glft_pixmap_font_save_pixmap_pgm(const struct glft_pixmap_font* thetex, FILE* fi
 
     unsigned char *ptr = thetex->pixmap ;
     int nbpixels = thetex->width * thetex->height;
-    for (int pixel=0; pixel<nbpixels; ++pixel) { 
+    for (int pixel=0; pixel<nbpixels; ++pixel) {
 	 fwrite(ptr, 1, 1, file) ;
 	 fwrite(ptr, 1, 1, file) ;
 	 fwrite(ptr, 1, 1, file) ;
@@ -2082,11 +2082,11 @@ glft_pixmap_font_load_pixmap_pgm_gzip(struct glft_pixmap_font* thetex, FILE* fil
   int res;
   gzFile gzf = gzdopen(fileno(file), "rb");
   char header[256];
-  
+
   if(!gzgets(gzf, header, 256)) {
     return 1;
   }
-  
+
   res = sscanf(header, "%2s %d %d %d\n", P5, &width, &height, &maxvalue);
   if(res!=4) {
     return 1;
@@ -2124,7 +2124,7 @@ glft_pixmap_font_save_pixmap_pgm_bzip2(const struct glft_pixmap_font* thetex, FI
     bzWriteClose (&err, f, 0, 0, 0);
     return;
   }
-  
+
   len = snprintf(header, 256, "P5 %d %d 255\n", thetex->width, thetex->height);
   if(len==-1) {
     DBG;
@@ -2165,7 +2165,7 @@ glft_pixmap_font_load_pixmap_pgm_bzip2(struct glft_pixmap_font* thetex, FILE* fi
     bzReadClose (&err, bzf);
     return 1;
   }
-  
+
   {
     int i=0;
     char* c=header;
@@ -2186,7 +2186,7 @@ glft_pixmap_font_load_pixmap_pgm_bzip2(struct glft_pixmap_font* thetex, FILE* fi
       return 1;
     }
   }
-  
+
   res = sscanf(header, "%2s %d %d %d\n", P5, &width, &height, &maxvalue);
   if(res!=4) {
     fprintf(stderr, header);
@@ -2241,7 +2241,7 @@ glft_pixmap_font_save_pixmap_png(const struct glft_pixmap_font* thetex, FILE* fi
   png_structp png_ptr = png_create_write_struct
     (PNG_LIBPNG_VER_STRING, 0,
      0, 0);
-  
+
   if (!png_ptr) {
     DBG;
     return;
@@ -2318,7 +2318,7 @@ glft_pixmap_font_load_pixmap_png(struct glft_pixmap_font* thetex, FILE* file)
     DBG;
     return 1;
   }
-  
+
   info_ptr = png_create_info_struct(png_ptr);
   if (!info_ptr) {
     DBG;
@@ -2326,7 +2326,7 @@ glft_pixmap_font_load_pixmap_png(struct glft_pixmap_font* thetex, FILE* file)
 					   (png_infopp)NULL, (png_infopp)NULL);
     return 1;
   }
-  
+
   end_info = png_create_info_struct(png_ptr);
   if (!end_info) {
     DBG;

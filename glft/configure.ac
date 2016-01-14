@@ -11,21 +11,21 @@
 
 # --------------------------------------------------------
 
-AC_PREREQ([2.69])
-AC_INIT([glft],[0.1],[conversy@enac.fr])
+AC_PREREQ(2.57)
+AC_INIT(glft, 0.1, conversy@enac.fr)
 AC_CONFIG_AUX_DIR(build/automake/utils)
 
-LT_INIT([disable-static])
-AC_SUBST([LIBTOOL_DEPS])
-
 AM_INIT_AUTOMAKE([dist-bzip2])
-AC_CONFIG_HEADERS([glft/config.hpp])
+AM_CONFIG_HEADER([glft/config.hpp])
 
 AC_CONFIG_SRCDIR([glft/glft.hpp])
 
 AC_CANONICAL_HOST
 
-AC_LANG([C++])
+AC_DISABLE_STATIC
+AC_PROG_LIBTOOL
+
+AC_LANG_CPLUSPLUS
 AC_PROG_CXX
 AC_PROG_INSTALL
 
@@ -51,7 +51,7 @@ case $host in
     OS_IS_MACOSX=1
     AC_DEFINE(OS_IS_MACOSX,1,[Mac OS X support])
     OS=MACOSX
-   ;; 
+   ;;
   *cygwin*)
     OS_IS_CYGWIN=1
     AC_DEFINE(OS_IS_CYGWIN,1,[Cygwin support])
@@ -95,7 +95,8 @@ esac
 
 AC_DEFUN([TEST_GLFT_USE_GLLIST],
 [AC_ARG_WITH([usegllist],
-             AS_HELP_STRING([--with-usegllist],[use gllist (default is YES)]),
+             AC_HELP_STRING([--with-usegllist],
+                            [use gllist (default is YES)]),
              [ac_cv_use_gllist=$withval], [ac_cv_use_gllist=yes])
 AC_CACHE_CHECK([whether to use gllist],
                [ac_cv_use_gllist], [ac_cv_use_gllist=yes])])
@@ -129,7 +130,7 @@ if test $FREETYPE_CONFIG = yes; then
   #LIBS="$LIBS -lfreetype $FT_LIBS"
 fi
 
-AC_CHECK_HEADER(freetype/config/ftconfig.h,
+AC_CHECK_HEADER(freetype2/config/ftconfig.h,
    ,
    echo "" ; echo "FreeType 2 is required to build glft" ; exit 1)
 

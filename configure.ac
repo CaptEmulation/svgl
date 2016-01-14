@@ -147,7 +147,7 @@ AC_CHECK_LIB(expat, XML_Parse, [], [AC_MSG_ERROR(couldn't find expat library)])
 LIBS="-lexpat $LIBS"
 
 AC_CHECK_HEADERS(png.h)
-AC_CHECK_LIB(png,png_check_sig, [], [AC_MSG_ERROR(couldn't find png library)])
+AC_CHECK_LIB(png,png_sig_cmp, [], [AC_MSG_ERROR(couldn't find png library)])
 LIBS="-lpng $LIBS"
 
 PKG_CONFIG_PATH="$ac_pwd/glft/"
@@ -165,7 +165,7 @@ dnl   HAVE_GLFT=1
 dnl   AC_DEFINE(HAVE_GLFT)
 dnl   CPPFLAGS="$CPPFLAGS `glft-config --cppflags`"
 dnl   LDFLAGS="$LDFLAGS `glft-config --ldflags`"
-dnl   LIBS="`glft-config --libs` $LIBS"  
+dnl   LIBS="`glft-config --libs` $LIBS"
 dnl else
 dnl   AC_MSG_ERROR("couldn't find glft-config")
 dnl fi
@@ -316,7 +316,7 @@ then
 	SVGL_USE_GC=1
 	LIBS="$LIBS -lgc"
 fi
-AC_SUBST(SVGL_USE_GC)	
+AC_SUBST(SVGL_USE_GC)
 
 CPPFLAGS="$CPPFLAGS $GLFT_CFLAGS"
 #LDFLAGS="$LDFLAGS $GLFT_LDFLAGS"

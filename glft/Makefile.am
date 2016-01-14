@@ -3,11 +3,6 @@
 
 .SILENT: @DISABLE_SILENT@
 
-LIBTOOL_DEPS = @LIBTOOL_DEPS@
-libtool: $(LIBTOOL_DEPS)
-	$(SHELL) ./config.status libtool
-
-
 SUBDIRS=glft demos
 
 EXTRA_DIST = LICENSE

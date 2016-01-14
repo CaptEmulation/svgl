@@ -51,7 +51,7 @@ case $host in
     OS_IS_MACOSX=1
     AC_DEFINE(OS_IS_MACOSX,1,[Mac OS X support])
     OS=MACOSX
-   ;; 
+   ;;
   *cygwin*)
     OS_IS_CYGWIN=1
     AC_DEFINE(OS_IS_CYGWIN,1,[Cygwin support])
@@ -130,7 +130,7 @@ if test $FREETYPE_CONFIG = yes; then
   #LIBS="$LIBS -lfreetype $FT_LIBS"
 fi
 
-AC_CHECK_HEADER(freetype/config/ftconfig.h,
+AC_CHECK_HEADER(freetype2/config/ftconfig.h,
    ,
    echo "" ; echo "FreeType 2 is required to build glft" ; exit 1)
 

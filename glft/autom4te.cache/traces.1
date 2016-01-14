@@ -149,7 +149,7 @@ m4trace:configure.ac:15: -1- m4_pattern_allow([^target_alias$])
 m4trace:configure.ac:16: -1- AC_CONFIG_AUX_DIR([build/automake/utils])
 m4trace:configure.ac:18: -1- AM_INIT_AUTOMAKE([dist-bzip2])
 m4trace:configure.ac:18: -1- m4_pattern_allow([^AM_[A-Z]+FLAGS$])
-m4trace:configure.ac:18: -1- AM_AUTOMAKE_VERSION([1.11.5])
+m4trace:configure.ac:18: -1- AM_AUTOMAKE_VERSION([1.15])
 m4trace:configure.ac:18: -1- AC_REQUIRE_AUX_FILE([install-sh])
 m4trace:configure.ac:18: -1- AC_SUBST([INSTALL_PROGRAM])
 m4trace:configure.ac:18: -1- AC_SUBST_TRACE([INSTALL_PROGRAM])
@@ -210,7 +210,7 @@ m4trace:configure.ac:18: -1- AC_REQUIRE_AUX_FILE([install-sh])
 m4trace:configure.ac:18: -1- AC_SUBST([MKDIR_P])
 m4trace:configure.ac:18: -1- AC_SUBST_TRACE([MKDIR_P])
 m4trace:configure.ac:18: -1- m4_pattern_allow([^MKDIR_P$])
-m4trace:configure.ac:18: -1- AC_SUBST([mkdir_p], ["$MKDIR_P"])
+m4trace:configure.ac:18: -1- AC_SUBST([mkdir_p], ['$(MKDIR_P)'])
 m4trace:configure.ac:18: -1- AC_SUBST_TRACE([mkdir_p])
 m4trace:configure.ac:18: -1- m4_pattern_allow([^mkdir_p$])
 m4trace:configure.ac:18: -1- AC_SUBST([AWK])
@@ -231,8 +231,24 @@ m4trace:configure.ac:18: -1- m4_pattern_allow([^am__tar$])
 m4trace:configure.ac:18: -1- AC_SUBST([am__untar])
 m4trace:configure.ac:18: -1- AC_SUBST_TRACE([am__untar])
 m4trace:configure.ac:18: -1- m4_pattern_allow([^am__untar$])
-m4trace:configure.ac:19: -1- _m4_warn([obsolete], [The macro `AM_CONFIG_HEADER' is obsolete.
-You should run autoupdate.], [aclocal.m4:429: AM_CONFIG_HEADER is expanded from...
+m4trace:configure.ac:18: -1- AM_SILENT_RULES
+m4trace:configure.ac:18: -1- AC_SUBST([AM_V])
+m4trace:configure.ac:18: -1- AC_SUBST_TRACE([AM_V])
+m4trace:configure.ac:18: -1- m4_pattern_allow([^AM_V$])
+m4trace:configure.ac:18: -1- _AM_SUBST_NOTMAKE([AM_V])
+m4trace:configure.ac:18: -1- AC_SUBST([AM_DEFAULT_V])
+m4trace:configure.ac:18: -1- AC_SUBST_TRACE([AM_DEFAULT_V])
+m4trace:configure.ac:18: -1- m4_pattern_allow([^AM_DEFAULT_V$])
+m4trace:configure.ac:18: -1- _AM_SUBST_NOTMAKE([AM_DEFAULT_V])
+m4trace:configure.ac:18: -1- AC_SUBST([AM_DEFAULT_VERBOSITY])
+m4trace:configure.ac:18: -1- AC_SUBST_TRACE([AM_DEFAULT_VERBOSITY])
+m4trace:configure.ac:18: -1- m4_pattern_allow([^AM_DEFAULT_VERBOSITY$])
+m4trace:configure.ac:18: -1- AC_SUBST([AM_BACKSLASH])
+m4trace:configure.ac:18: -1- AC_SUBST_TRACE([AM_BACKSLASH])
+m4trace:configure.ac:18: -1- m4_pattern_allow([^AM_BACKSLASH$])
+m4trace:configure.ac:18: -1- _AM_SUBST_NOTMAKE([AM_BACKSLASH])
+m4trace:configure.ac:19: -1- _m4_warn([obsolete], ['AM_CONFIG_HEADER': this macro is obsolete.
+You should use the 'AC_CONFIG_HEADERS' macro instead.], [aclocal.m4:9780: AM_CONFIG_HEADER is expanded from...
 configure.ac:19: the top level])
 m4trace:configure.ac:19: -1- AC_CONFIG_HEADERS([glft/config.hpp])
 m4trace:configure.ac:23: -1- AC_CANONICAL_HOST
@@ -265,7 +281,7 @@ m4trace:configure.ac:23: -1- AC_SUBST_TRACE([host_os])
 m4trace:configure.ac:23: -1- m4_pattern_allow([^host_os$])
 m4trace:configure.ac:26: -1- AC_PROG_LIBTOOL
 m4trace:configure.ac:26: -1- _m4_warn([obsolete], [The macro `AC_PROG_LIBTOOL' is obsolete.
-You should run autoupdate.], [aclocal.m4:1090: AC_PROG_LIBTOOL is expanded from...
+You should run autoupdate.], [aclocal.m4:121: AC_PROG_LIBTOOL is expanded from...
 configure.ac:26: the top level])
 m4trace:configure.ac:26: -1- LT_INIT
 m4trace:configure.ac:26: -1- m4_pattern_forbid([^_?LT_[A-Z_]+$])
@@ -310,6 +326,7 @@ m4trace:configure.ac:26: -1- m4_pattern_allow([^EXEEXT$])
 m4trace:configure.ac:26: -1- AC_SUBST([OBJEXT], [$ac_cv_objext])
 m4trace:configure.ac:26: -1- AC_SUBST_TRACE([OBJEXT])
 m4trace:configure.ac:26: -1- m4_pattern_allow([^OBJEXT$])
+m4trace:configure.ac:26: -1- AC_REQUIRE_AUX_FILE([compile])
 m4trace:configure.ac:26: -1- AC_SUBST([DEPDIR], ["${am__leading_dot}deps"])
 m4trace:configure.ac:26: -1- AC_SUBST_TRACE([DEPDIR])
 m4trace:configure.ac:26: -1- m4_pattern_allow([^DEPDIR$])
@@ -410,8 +427,7 @@ m4trace:configure.ac:26: -1- m4_pattern_allow([^RANLIB$])
 m4trace:configure.ac:26: -1- m4_pattern_allow([LT_OBJDIR])
 m4trace:configure.ac:26: -1- AC_DEFINE_TRACE_LITERAL([LT_OBJDIR])
 m4trace:configure.ac:26: -1- m4_pattern_allow([^LT_OBJDIR$])
-m4trace:configure.ac:26: -1- AH_OUTPUT([LT_OBJDIR], [/* Define to the sub-directory in which libtool stores uninstalled libraries.
-   */
+m4trace:configure.ac:26: -1- AH_OUTPUT([LT_OBJDIR], [/* Define to the sub-directory where libtool stores uninstalled libraries. */
 @%:@undef LT_OBJDIR])
 m4trace:configure.ac:26: -1- LT_SUPPORTED_TAG([CC])
 m4trace:configure.ac:26: -1- AC_SUBST([MANIFEST_TOOL])
@@ -432,6 +448,9 @@ m4trace:configure.ac:26: -1- m4_pattern_allow([^OTOOL$])
 m4trace:configure.ac:26: -1- AC_SUBST([OTOOL64])
 m4trace:configure.ac:26: -1- AC_SUBST_TRACE([OTOOL64])
 m4trace:configure.ac:26: -1- m4_pattern_allow([^OTOOL64$])
+m4trace:configure.ac:26: -1- AC_SUBST([LT_SYS_LIBRARY_PATH])
+m4trace:configure.ac:26: -1- AC_SUBST_TRACE([LT_SYS_LIBRARY_PATH])
+m4trace:configure.ac:26: -1- m4_pattern_allow([^LT_SYS_LIBRARY_PATH$])
 m4trace:configure.ac:26: -1- AH_OUTPUT([HAVE_DLFCN_H], [/* Define to 1 if you have the <dlfcn.h> header file. */
 @%:@undef HAVE_DLFCN_H])
 m4trace:configure.ac:26: -1- AC_SUBST([CPP])
@@ -518,6 +537,9 @@ m4trace:configure.ac:29: -1- m4_pattern_allow([^CXXCPP$])
 m4trace:configure.ac:29: -1- AC_SUBST([LD])
 m4trace:configure.ac:29: -1- AC_SUBST_TRACE([LD])
 m4trace:configure.ac:29: -1- m4_pattern_allow([^LD$])
+m4trace:configure.ac:29: -1- AC_SUBST([LT_SYS_LIBRARY_PATH])
+m4trace:configure.ac:29: -1- AC_SUBST_TRACE([LT_SYS_LIBRARY_PATH])
+m4trace:configure.ac:29: -1- m4_pattern_allow([^LT_SYS_LIBRARY_PATH$])
 m4trace:configure.ac:36: -1- AC_SUBST([GLFT_INCLUDEDIR])
 m4trace:configure.ac:36: -1- AC_SUBST_TRACE([GLFT_INCLUDEDIR])
 m4trace:configure.ac:36: -1- m4_pattern_allow([^GLFT_INCLUDEDIR$])
@@ -576,16 +598,16 @@ m4trace:configure.ac:90: -1- AC_DEFINE_TRACE_LITERAL([HAVE_LIBX11])
 m4trace:configure.ac:90: -1- m4_pattern_allow([^HAVE_LIBX11$])
 m4trace:configure.ac:104: -2- _m4_warn([obsolete], [The macro `AC_HELP_STRING' is obsolete.
 You should run autoupdate.], [../../lib/autoconf/general.m4:207: AC_HELP_STRING is expanded from...
-configure.ac:96: TEST_GLFT_USE_GLLIST is expanded from...
+configure.ac:102: TEST_GLFT_USE_GLLIST is expanded from...
 configure.ac:104: the top level])
 m4trace:configure.ac:112: -1- AC_SUBST([FREETYPE_CONFIG])
 m4trace:configure.ac:112: -1- AC_SUBST_TRACE([FREETYPE_CONFIG])
 m4trace:configure.ac:112: -1- m4_pattern_allow([^FREETYPE_CONFIG$])
-m4trace:configure.ac:137: -1- AH_OUTPUT([HAVE_LIBFREETYPE], [/* Define to 1 if you have the `freetype\' library (-lfreetype). */
+m4trace:configure.ac:139: -1- AH_OUTPUT([HAVE_LIBFREETYPE], [/* Define to 1 if you have the `freetype\' library (-lfreetype). */
 @%:@undef HAVE_LIBFREETYPE])
-m4trace:configure.ac:137: -1- AC_DEFINE_TRACE_LITERAL([HAVE_LIBFREETYPE])
-m4trace:configure.ac:137: -1- m4_pattern_allow([^HAVE_LIBFREETYPE$])
-m4trace:configure.ac:143: -1- AC_CONFIG_FILES([Makefile
+m4trace:configure.ac:139: -1- AC_DEFINE_TRACE_LITERAL([HAVE_LIBFREETYPE])
+m4trace:configure.ac:139: -1- m4_pattern_allow([^HAVE_LIBFREETYPE$])
+m4trace:configure.ac:149: -1- AC_CONFIG_FILES([Makefile
   glft/Makefile
   demos/Makefile
   glft.pc

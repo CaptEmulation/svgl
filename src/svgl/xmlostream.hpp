@@ -4,7 +4,7 @@
 Copyright (c) 2001 Stephane Conversy, Jean-Daniel Fekete and Ecole des
 Mines de Nantes.
 All rights reserved.
- 
+
 This software is proprietary information of Stephane Conversy,
 Jean-Daniel Fekete and Ecole des Mines de Nantes.  You shall use it
 only in accordance with the terms of the license agreement you
@@ -54,7 +54,8 @@ public:
     _tabs.erase();
     _tabs.append(t,'\t');
   }
-
+  template <typename X> friend xmlostream& operator<<(xmlostream& out, const X& x);
+  template <typename X> friend xmlostream& operator<<(xmlostream& out, xmlostream& (*manip)(xmlostream&) );
   //operator std::ostream&() { return _out; }
 
 private:

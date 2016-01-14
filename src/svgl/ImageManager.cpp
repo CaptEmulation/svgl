@@ -4,7 +4,7 @@
 Copyright (c) 2001 Stephane Conversy, Jean-Daniel Fekete and Ecole des
 Mines de Nantes.
 All rights reserved.
- 
+
 This software is proprietary information of Stephane Conversy,
 Jean-Daniel Fekete and Ecole des Mines de Nantes.  You shall use it
 only in accordance with the terms of the license agreement you
@@ -27,7 +27,7 @@ namespace svgl {
     : _width(0), _height(0)
   {
   }
-  
+
   Image::~Image()
   {
   }
@@ -36,7 +36,7 @@ namespace svgl {
     : _texwidth(0), _texheight(0), _pixmap(0)
   {
   }
-  
+
   PixmapImage::~PixmapImage()
   {
     glDeleteTextures(1, &_texnum);
@@ -84,9 +84,9 @@ namespace svgl {
 
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST); 
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-      
+
     glMatrixMode(GL_TEXTURE);
     glLoadIdentity();
     glMatrixMode(GL_MODELVIEW);
@@ -104,7 +104,7 @@ namespace svgl {
     glMatrixMode(GL_PROJECTION);
     glPopMatrix();
     glMatrixMode(GL_MODELVIEW);
-    
+
 #else
     glTexImage2D(GL_TEXTURE_2D, 0, _internalFormat, _texwidth, _texheight, 0, _format, _type, _pixmap);
 #endif
@@ -146,7 +146,7 @@ namespace svgl {
     Image * res=0;
     {
       PNGImage* respng = loadPNG(filename);
- 
+
       if(respng) {
 	respng->glCreateTexture();
 	res = respng;
@@ -206,7 +206,7 @@ namespace svgl {
       STDDBG;
       return 0;
     }
-    
+
     info_ptr = png_create_info_struct(png_ptr);
     if (!info_ptr) {
       STDDBG;
@@ -214,7 +214,7 @@ namespace svgl {
 			      (png_infopp)NULL, (png_infopp)NULL);
       return 0;
     }
-    
+
     end_info = png_create_info_struct(png_ptr);
     if (!end_info) {
       STDDBG;
@@ -222,14 +222,15 @@ namespace svgl {
 			      (png_infopp)NULL);
       return 0;
     }
-    
-    if (setjmp(png_ptr->jmpbuf)) {
-      STDDBG;
-      png_destroy_read_struct(&png_ptr, &info_ptr,
-			      &end_info);
-      return 0;
-    }
-    
+
+    // JHD: Not working with my libpng...
+    // if (setjmp(png_ptr->jmpbuf)) {
+    //   STDDBG;
+    //   png_destroy_read_struct(&png_ptr, &info_ptr,
+		// 	      &end_info);
+    //   return 0;
+    // }
+
     png_init_io(png_ptr, file);
     png_set_sig_bytes(png_ptr, 8);
     png_read_info(png_ptr, info_ptr);
@@ -253,7 +254,7 @@ namespace svgl {
 
     res->_texwidth=texwidth;
     res->_texheight=texheight;
-    
+
     int depth = png_get_bit_depth(png_ptr, info_ptr);
     int color_type = png_get_color_type(png_ptr, info_ptr);
     int bpp;
@@ -334,7 +335,7 @@ namespace svgl {
     //    std::cerr << DBGVAL(width) << DBGVAL(texwidth) << DBGVAL(height) << DBGVAL(texheight) << " pixmap:" << (void*)pixmap << std::endl;
 
     res->_pixmap=pixmap;
-    
+
     return res;
   }
 
@@ -386,7 +387,7 @@ namespace svgl {
       //std::cout << std::flush;
       writer.visitDocument(thesvgdoc);
       std::cerr << std::endl << "document written." << __FL__;
-      
+
     }
 #endif
 
@@ -395,21 +396,21 @@ namespace svgl {
 #if 0
     animinfo->animationManager->stop();
     animinfo->animationManager->unsubscribe_all();
-    
+
     //gc_dbg_save.push_back(thesvgelt);
-    
+
     svg::SVGSVGElement * thesvgelt = thesvgdoc->getRootElement().getValue();
     if(!thesvgelt) {
       std::cerr << "no svg element in " << filename << __FL__;
       return 0;
     }
     thesvgelt->animationTraverse(animinfo);
-    
+
     //std::cerr << DBGVAR(thesvgelt) << __FL__;
-    
+
     const svg::SVGLength& widthl = thesvgelt->GETVAL(Width);
     const svg::SVGLength& heightl = thesvgelt->GETVAL(Height);
-    
+
     //std::cerr << DBGVAR(&widthl) << DBGVAR(&heightl) << __FL__
 #if 0
     float width = svglContext.computeWidthLength(widthl);
@@ -418,14 +419,14 @@ namespace svgl {
     float width = widthl.getValue().getValue();
     float height = heightl.getValue().getValue();
 #endif
-    
+
     //std::cerr << DBGVAR(width) << DBGVAR(height) << __FL__
     //std::cerr << DBGVAR(widthl.getValueAsString()) << DBGVAR(heightl.getValueAsString()) << __FL__
-    
+
     svglContext->setViewportWidthHeight(width, height);
     svglContext->externalEntityManager->setDocumentName(unicode::String::createString(filename));
     svglContext->svgOwner = thesvgelt;
-    
+
 #endif
 
     SVGImage * im = new SVGImage(thesvgdoc);
@@ -435,6 +436,6 @@ namespace svgl {
   void
   SVGImage::glDisplay(double x, double y, double width, double height)
   {
-  } 
+  }
 }
 

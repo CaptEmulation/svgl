@@ -4,7 +4,7 @@
 Copyright (c) 2001 Stephane Conversy, Jean-Daniel Fekete and Ecole des
 Mines de Nantes.
 All rights reserved.
- 
+
 This software is proprietary information of Stephane Conversy,
 Jean-Daniel Fekete and Ecole des Mines de Nantes.  You shall use it
 only in accordance with the terms of the license agreement you
@@ -28,6 +28,10 @@ http://www.emn.fr/info/image/Themes/Indigo/licence.html
 
 #ifndef CALLBACK
 #define CALLBACK
+#endif
+
+#ifndef GLAPIENTRYP
+#define GLAPIENTRYP *
 #endif
 
 #define CLIP_WITH_STENCIL
@@ -80,7 +84,7 @@ namespace svgl {
   {
     std::cerr << gluErrorString(err) << std::endl;
   }
-  
+
   static void CALLBACK
   tessCombine (GLdouble c[3], void *d[4], GLfloat w[4], void **out)
   {
@@ -324,7 +328,7 @@ GLInfo::getCurrentScale() const
     gluTessCallback(gluTriangulator, GLU_TESS_ERROR, reinterpret_cast<fn_type>(tessError));
 		gluTessCallback(gluTriangulator, GLU_TESS_BEGIN_DATA, reinterpret_cast<fn_type>(0) );
 		gluTessCallback(gluTriangulator, GLU_TESS_END_DATA, reinterpret_cast<fn_type>(0));
-		gluTessCallback(gluTriangulator, GLU_TESS_VERTEX_DATA, reinterpret_cast<fn_type>(0));				
+		gluTessCallback(gluTriangulator, GLU_TESS_VERTEX_DATA, reinterpret_cast<fn_type>(0));
   }
 
   void
@@ -333,7 +337,7 @@ GLInfo::getCurrentScale() const
     setTessContext();
     typedef void (GLAPIENTRYP fn_type)(void);
     gluTessCallback(gluTriangulator, GLU_TESS_VERTEX, reinterpret_cast<fn_type>(tessVertexPolygon));
-    gluTessCallback(gluTriangulator, GLU_TESS_COMBINE, reinterpret_cast<fn_type>(tessVertexCombine));				
+    gluTessCallback(gluTriangulator, GLU_TESS_COMBINE, reinterpret_cast<fn_type>(tessVertexCombine));
   }
 
   void
@@ -510,7 +514,8 @@ GLInfo::getCurrentScale() const
   {
     switch(doPick) {
     case pick_this:
-      glPushName(reinterpret_cast<GLuint>(e));
+      // JHD: Not 64-bit safe
+      //glPushName(reinterpret_cast<GLuint>((e));
       break;
     case pick_no:
     default:
@@ -523,7 +528,7 @@ GLInfo::getCurrentScale() const
   {
     switch(doPick) {
     case pick_this:
-      glPopName();
+      //glPopName();
       break;
     case pick_no:
     default:
