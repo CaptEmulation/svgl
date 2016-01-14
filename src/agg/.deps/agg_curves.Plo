@@ -1,0 +1,23 @@
+agg_curves.lo: agg_curves.cpp /usr/include/math.h \
+  /usr/include/sys/cdefs.h /usr/include/sys/_symbol_aliasing.h \
+  /usr/include/sys/_posix_availability.h /usr/include/Availability.h \
+  /usr/include/AvailabilityInternal.h agg_curves.h agg_basics.h \
+  agg_vertex_iterator.h
+
+/usr/include/math.h:
+
+/usr/include/sys/cdefs.h:
+
+/usr/include/sys/_symbol_aliasing.h:
+
+/usr/include/sys/_posix_availability.h:
+
+/usr/include/Availability.h:
+
+/usr/include/AvailabilityInternal.h:
+
+agg_curves.h:
+
+agg_basics.h:
+
+agg_vertex_iterator.h:

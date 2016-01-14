@@ -1,0 +1,10 @@
+prefix=/usr/local
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include/svgl
+
+Name: svgl
+Description: 
+Version: 0.1
+Cflags: -I${includedir}
+Libs: -L/sw/lib  -L${libdir} -lsvgl -lpng -lpng -lexpat -lexpat -L/usr/local/Cellar/freetype/2.6_1/lib -lfreetype  -L/usr/X11/lib  -framework OpenGL -lgc

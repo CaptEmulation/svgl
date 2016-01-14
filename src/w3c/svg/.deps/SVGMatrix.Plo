@@ -1,0 +1,8 @@
+SVGMatrix.lo: SVGMatrix.cpp ../../../src/w3c/svg/SVGMatrix.hpp \
+  ../../../src/w3c/svg/Attribute.hpp ../../../src/svgl/config.hpp
+
+../../../src/w3c/svg/SVGMatrix.hpp:
+
+../../../src/w3c/svg/Attribute.hpp:
+
+../../../src/svgl/config.hpp:

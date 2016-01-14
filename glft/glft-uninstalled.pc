@@ -1,0 +1,10 @@
+prefix=/usr/local
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: glft
+Description: 
+Version: 0.1
+Cflags: -DGLFT_USE_GLLIST=1  -I/usr/X11R6/include -I/sw/include -I/Users/jdean/Development/svgl/glft/local/include -I/System/Library/Frameworks/AGL.framework/Headers -I/usr/local/Cellar/freetype/2.6_1/include/freetype2 -I/Users/jdean/Development/svgl/glft
+Libs:  -L/usr/X11R6/lib -L/sw/lib  -L/usr/local/Cellar/freetype/2.6_1/lib /Users/jdean/Development/svgl/glft/glft/libglft.la -lfreetype  -framework OpenGL
